@@ -1,8 +1,6 @@
 pins.touch_set_mode(TouchTarget.P1, TouchTargetMode.CAPACITIVE)
 pins.touch_set_mode(TouchTarget.P2, TouchTargetMode.CAPACITIVE)
 
-is_pin1 = pins.digitalReadPin(DigitalPin.P1) == 0
-is_pin2 = pins.digitalReadPin(DigitalPin.P2) == 0
 
 start = False
 doba = 0
@@ -22,16 +20,21 @@ def on_forever():
     console.log_value("P1", input.pin_is_pressed(TouchPin.P1))
     console.log_value("P2", input.pin_is_pressed(TouchPin.P2))
 
-    pins.digitalReadPin(DigitalPin.P1) == 0
-    pins.digitalReadPin(DigitalPin.P2) == 0
+    #is_pin1 = pins.digitalReadPin(DigitalPin.P1) == 0
+    #is_pin2 = pins.digitalReadPin(DigitalPin.P2) == 0
 
     if input.pin_is_pressed(TouchPin.P1) == True:
        basic.show_number(1)
     if input.pin_is_pressed(TouchPin.P2) == True:
         basic.show_number(2)
+    if input.pin_is_pressed(TouchPin.P1) and input.pin_is_pressed(TouchPin.P2) == True:
+        basic.show_string("R")
+
+control.reset()
 
      
     
 basic.forever(on_forever)
+
 
 
